@@ -32,7 +32,9 @@ Module._resolveFilename = function resolveFilename(request, parent, isMain, opti
   return originalResolveFilename.call(this, resolveAlias(request), parent, isMain, options);
 };
 
-const { mockSetups } = require('../lib/mock-data.ts');
+const { mockAlerts, mockBriefings, mockSetups } = require('../lib/mock-data.ts');
+const { projectAlertForUser } = require('../lib/entitlements/get-safe-alerts.ts');
+const { projectBriefingForUser } = require('../lib/entitlements/get-safe-briefings.ts');
 const { projectSetupForUser } = require('../lib/entitlements/project-setup.ts');
 
 const forbiddenBronzeFields = [
@@ -65,4 +67,60 @@ if (!blackSetups.some((setup) => Object.prototype.hasOwnProperty.call(setup, 'el
   throw new Error('Black setup payload did not include eliteDeskNote');
 }
 
-console.log('Safe setup validation passed');
+const forbiddenBronzeBriefingFields = [
+  'fullContent',
+  'tinoNotes',
+  'executionFocus',
+  'premiumAnalysis',
+  'eliteCommentary',
+];
+
+const forbiddenBronzeAlertFields = [
+  'fullMessage',
+  'executionDetails',
+  'realTimeContext',
+  'premiumCommentary',
+  'eliteCommentary',
+];
+
+const bronzeBriefings = mockBriefings.map((briefing) => projectBriefingForUser(briefing, 'bronze'));
+const platinumBriefings = mockBriefings.map((briefing) => projectBriefingForUser(briefing, 'platinum'));
+const blackBriefings = mockBriefings.map((briefing) => projectBriefingForUser(briefing, 'black'));
+
+for (const briefing of bronzeBriefings) {
+  for (const field of forbiddenBronzeBriefingFields) {
+    if (Object.prototype.hasOwnProperty.call(briefing, field)) {
+      throw new Error(`Bronze briefing ${briefing.id} leaked ${field}`);
+    }
+  }
+}
+
+if (!platinumBriefings.every((briefing) => Object.prototype.hasOwnProperty.call(briefing, 'fullContent') && Object.prototype.hasOwnProperty.call(briefing, 'tinoNotes'))) {
+  throw new Error('Platinum briefing payload did not include full fields');
+}
+
+if (!blackBriefings.some((briefing) => Object.prototype.hasOwnProperty.call(briefing, 'eliteCommentary'))) {
+  throw new Error('Black briefing payload did not include eliteCommentary');
+}
+
+const bronzeAlerts = mockAlerts.map((alert) => projectAlertForUser(alert, 'bronze'));
+const platinumAlerts = mockAlerts.map((alert) => projectAlertForUser(alert, 'platinum'));
+const blackAlerts = mockAlerts.map((alert) => projectAlertForUser(alert, 'black'));
+
+for (const alert of bronzeAlerts) {
+  for (const field of forbiddenBronzeAlertFields) {
+    if (Object.prototype.hasOwnProperty.call(alert, field)) {
+      throw new Error(`Bronze alert ${alert.id} leaked ${field}`);
+    }
+  }
+}
+
+if (!platinumAlerts.every((alert) => Object.prototype.hasOwnProperty.call(alert, 'fullMessage') && Object.prototype.hasOwnProperty.call(alert, 'executionDetails'))) {
+  throw new Error('Platinum alert payload did not include full fields');
+}
+
+if (!blackAlerts.some((alert) => Object.prototype.hasOwnProperty.call(alert, 'eliteCommentary'))) {
+  throw new Error('Black alert payload did not include eliteCommentary');
+}
+
+console.log('Safe payload validation passed');

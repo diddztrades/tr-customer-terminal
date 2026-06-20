@@ -10,6 +10,14 @@ The `/demo` route must wait until safe payloads exist because demos often reuse 
 
 The current session is intentionally mocked by `getMockServerUser()`. Real auth and subscription logic should later replace that function with a server-derived user from the authenticated session and billing source, while keeping `getSafeSetupsForUser()` as the server-side projection boundary.
 
-TODO: Briefings currently need the same safe-payload pattern before premium briefing body text or Tino notes are used in client components.
+## Briefing and Alert Protection
 
-TODO: Alerts currently need the same safe-payload pattern before premium alert messages are used in client components.
+Briefings and alerts now follow the same server-side payload boundary as setups. Server helpers project full mock records into safe tier-specific payloads before page rendering.
+
+Bronze briefing payloads include public title, summary, market state, threat headline, and public narrative only. They omit full content, Tino notes, execution focus, premium analysis, and elite commentary.
+
+Bronze alert payloads include public headline, asset, alert type, and timestamp only. They omit full message, execution details, real-time context, premium commentary, and elite commentary.
+
+Gold payloads may include delayed or partial context. Platinum payloads may include full briefing and alert context, including Tino notes and execution context. Black payloads may add elite commentary and priority context.
+
+The remaining replacement work is to connect `getMockServerUser()` to real server-derived auth and subscription state later. The allowlist projection functions should remain the boundary even after real auth is introduced.

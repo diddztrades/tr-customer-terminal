@@ -1,22 +1,19 @@
-'use client';
-
 import TerminalShell from '@/components/TerminalShell';
-import { mockUser, mockAlerts } from '@/lib/mock-data';
-import { canAccessTier } from '@/lib/tier-access';
-import LockedPreview from '@/components/LockedPreview';
-import { useState } from 'react';
+import { getSafeAlertsForUser } from '@/lib/entitlements/get-safe-alerts';
+import { getMockServerUser } from '@/lib/entitlements/mock-session';
 
-export default function AlertsPage() {
-  const [readFilter, setReadFilter] = useState<'all' | 'unread'>('unread');
+interface AlertsPageProps {
+  searchParams?: {
+    filter?: 'all' | 'unread';
+  };
+}
 
-  const filteredAlerts = mockAlerts.filter((alert) => {
-    if (readFilter === 'unread') {
-      return !alert.read;
-    }
-    return true;
-  });
-
-  const unreadCount = mockAlerts.filter((a) => !a.read).length;
+export default function AlertsPage({ searchParams }: AlertsPageProps) {
+  const user = getMockServerUser();
+  const safeAlerts = getSafeAlertsForUser();
+  const readFilter = searchParams?.filter === 'all' ? 'all' : 'unread';
+  const filteredAlerts = readFilter === 'unread' ? safeAlerts.filter((alert) => !alert.read) : safeAlerts;
+  const unreadCount = safeAlerts.filter((alert) => !alert.read).length;
 
   const priorityColor = {
     LOW: 'bg-blue-400/10 text-blue-400 border-blue-400',
@@ -26,7 +23,7 @@ export default function AlertsPage() {
   };
 
   return (
-    <TerminalShell userTier={mockUser.tier} currentSection="alerts">
+    <TerminalShell userTier={user.tier} currentSection="alerts">
       <div className="p-4 md:p-8 space-y-8">
         {/* Page Title */}
         <div className="space-y-2">
@@ -44,7 +41,7 @@ export default function AlertsPage() {
           </div>
           <div className="tr-card">
             <div className="text-xs font-mono text-tr-gray-light mb-2">Total</div>
-            <div className="text-3xl font-bold">{mockAlerts.length}</div>
+            <div className="text-3xl font-bold">{safeAlerts.length}</div>
           </div>
           <div className="tr-card">
             <div className="text-xs font-mono text-tr-gray-light mb-2">Alert Mode</div>
@@ -52,14 +49,14 @@ export default function AlertsPage() {
           </div>
           <div className="tr-card">
             <div className="text-xs font-mono text-tr-gray-light mb-2">Tier Access</div>
-            <div className="text-sm uppercase text-tr-red">{mockUser.tier}</div>
+            <div className="text-sm uppercase text-tr-red">{user.tier}</div>
           </div>
         </div>
 
         {/* Filters */}
         <div className="flex gap-2">
-          <button
-            onClick={() => setReadFilter('unread')}
+          <a
+            href="/alerts"
             className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
               readFilter === 'unread'
                 ? 'bg-tr-red text-tr-black border-tr-red'
@@ -67,9 +64,9 @@ export default function AlertsPage() {
             }`}
           >
             Unread
-          </button>
-          <button
-            onClick={() => setReadFilter('all')}
+          </a>
+          <a
+            href="/alerts?filter=all"
             className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
               readFilter === 'all'
                 ? 'bg-tr-red text-tr-black border-tr-red'
@@ -77,47 +74,54 @@ export default function AlertsPage() {
             }`}
           >
             All
-          </button>
+          </a>
         </div>
 
         {/* Alerts Feed */}
         <div className="space-y-3">
-          {filteredAlerts.map((alert) => {
-            const canAccess = canAccessTier(mockUser.tier, alert.tierRequired);
+          {filteredAlerts.map((alert) => (
+            <div key={alert.id} className="tr-card relative">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 mb-2">
+                    {!alert.read && <div className="w-2 h-2 bg-tr-red rounded-full"></div>}
+                    <span className={`tr-badge ${priorityColor[alert.priority]}`}>{alert.priority}</span>
+                    <span className="text-xs font-mono text-tr-gray-light">{alert.alertType}</span>
+                  </div>
 
-            return (
-              <div key={alert.id} className={`tr-card ${canAccess ? '' : 'relative'}`}>
-                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-2">
-                      {!alert.read && <div className="w-2 h-2 bg-tr-red rounded-full"></div>}
-                      <span className={`tr-badge ${priorityColor[alert.priority]}`}>{alert.priority}</span>
-                      <span className="text-xs font-mono text-tr-gray-light">{alert.type}</span>
+                  <h3 className="font-bold mb-2 text-tr-red">{alert.asset}</h3>
+                  <p className="text-sm text-tr-white mb-2">
+                    {'fullMessage' in alert && alert.fullMessage ? alert.fullMessage : alert.headline}
+                  </p>
+
+                  {'partialContext' in alert && alert.partialContext ? (
+                    <p className="text-xs text-tr-gray-light mb-2">{alert.partialContext}</p>
+                  ) : null}
+
+                  {'executionDetails' in alert && alert.executionDetails ? (
+                    <p className="text-xs text-tr-gray-light mb-2">{alert.executionDetails}</p>
+                  ) : (
+                    <div className="text-xs font-mono uppercase tracking-wider text-tr-red mb-2">
+                      {alert.upgradeReason || 'Real-time alert context available in Platinum.'}
                     </div>
+                  )}
 
-                    {canAccess ? (
-                      <>
-                        <h3 className="font-bold mb-2 text-tr-red">{alert.asset}</h3>
-                        <p className="text-sm text-tr-white mb-2">{alert.message}</p>
-                        <div className="text-xs text-tr-gray-light font-mono">
-                          {alert.issuedAt.toLocaleString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                          })}
-                        </div>
-                      </>
-                    ) : (
-                      <div className="py-2">
-                        <LockedPreview userTier={mockUser.tier} requiredTier={alert.tierRequired} blurred={false} />
-                      </div>
-                    )}
+                  {'eliteCommentary' in alert && alert.eliteCommentary ? (
+                    <p className="text-xs text-tr-white mb-2">{alert.eliteCommentary}</p>
+                  ) : null}
+
+                  <div className="text-xs text-tr-gray-light font-mono">
+                    {new Date(alert.timestamp).toLocaleString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                    })}
                   </div>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
 
           {filteredAlerts.length === 0 && (
             <div className="text-center py-12">
