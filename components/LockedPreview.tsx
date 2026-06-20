@@ -1,6 +1,6 @@
 'use client';
 
-import { UserTier } from '@/lib/mock-data';
+import type { UserTier } from '@/lib/mock-data';
 import { getUpgradeMessage } from '@/lib/tier-access';
 import Link from 'next/link';
 

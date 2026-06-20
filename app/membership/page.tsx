@@ -2,7 +2,7 @@
 
 import TerminalShell from '@/components/TerminalShell';
 import { mockUser, membershipTiers } from '@/lib/mock-data';
-import { UserTier } from '@/lib/mock-data';
+import type { UserTier } from '@/lib/mock-data';
 import Link from 'next/link';
 
 export default function MembershipPage() {

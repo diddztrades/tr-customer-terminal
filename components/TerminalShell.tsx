@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { UserTier } from '@/lib/mock-data';
+import type { UserTier } from '@/lib/mock-data';
 import { tierLabels } from '@/lib/tier-access';
 
 interface TerminalShellProps {

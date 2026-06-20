@@ -1,4 +1,4 @@
-import { UserTier } from './mock-data';
+import type { UserTier } from './mock-data';
 
 const tierHierarchy: Record<UserTier, number> = {
   bronze: 0,

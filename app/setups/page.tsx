@@ -1,29 +1,30 @@
-'use client';
-
 import TerminalShell from '@/components/TerminalShell';
 import SetupCard from '@/components/SetupCard';
-import { mockUser, mockSetups } from '@/lib/mock-data';
-import { useState } from 'react';
+import { getSafeSetupsForUser } from '@/lib/entitlements/get-safe-setups';
+import { getMockServerUser } from '@/lib/entitlements/mock-session';
+import type { SetupDirection } from '@/lib/mock-data';
 
-export default function SetupsPage() {
-  const [filterDirection, setFilterDirection] = useState<string | null>(null);
-  const [filterAssetClass, setFilterAssetClass] = useState<string | null>(null);
+interface SetupsPageProps {
+  searchParams?: {
+    direction?: SetupDirection;
+  };
+}
 
-  let filteredSetups = mockSetups;
+const directions: SetupDirection[] = ['LONG', 'SHORT'];
+
+export default function SetupsPage({ searchParams }: SetupsPageProps) {
+  const user = getMockServerUser();
+  const safeSetups = getSafeSetupsForUser();
+  const filterDirection = directions.includes(searchParams?.direction as SetupDirection) ? searchParams?.direction : undefined;
+
+  let filteredSetups = safeSetups;
 
   if (filterDirection) {
     filteredSetups = filteredSetups.filter((s) => s.direction === filterDirection);
   }
 
-  if (filterAssetClass) {
-    filteredSetups = filteredSetups.filter((s) => s.assetClass === filterAssetClass);
-  }
-
-  const assetClasses = Array.from(new Set(mockSetups.map((s) => s.assetClass)));
-  const directions = ['LONG', 'SHORT'];
-
   return (
-    <TerminalShell userTier={mockUser.tier} currentSection="setups">
+    <TerminalShell userTier={user.tier} currentSection="setups">
       <div className="p-4 md:p-8 space-y-8">
         {/* Page Title */}
         <div className="space-y-4">
@@ -37,9 +38,9 @@ export default function SetupsPage() {
             {/* Direction Filter */}
             <div className="flex gap-2">
               {directions.map((dir) => (
-                <button
+                <a
                   key={dir}
-                  onClick={() => setFilterDirection(filterDirection === dir ? null : dir)}
+                  href={filterDirection === dir ? '/setups' : `/setups?direction=${dir}`}
                   className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
                     filterDirection === dir
                       ? 'bg-tr-red text-tr-black border-tr-red'
@@ -47,38 +48,18 @@ export default function SetupsPage() {
                   }`}
                 >
                   {dir}
-                </button>
-              ))}
-            </div>
-
-            {/* Asset Class Filter */}
-            <div className="flex gap-2">
-              {assetClasses.map((assetClass) => (
-                <button
-                  key={assetClass}
-                  onClick={() => setFilterAssetClass(filterAssetClass === assetClass ? null : assetClass)}
-                  className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
-                    filterAssetClass === assetClass
-                      ? 'bg-tr-red text-tr-black border-tr-red'
-                      : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
-                  }`}
-                >
-                  {assetClass}
-                </button>
+                </a>
               ))}
             </div>
 
             {/* Reset */}
-            {(filterDirection || filterAssetClass) && (
-              <button
-                onClick={() => {
-                  setFilterDirection(null);
-                  setFilterAssetClass(null);
-                }}
+            {filterDirection && (
+              <a
+                href="/setups"
                 className="text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border border-tr-gray-dark text-tr-gray-light hover:text-tr-white"
               >
                 Reset
-              </button>
+              </a>
             )}
           </div>
         </div>
@@ -86,7 +67,7 @@ export default function SetupsPage() {
         {/* Setups Grid */}
         <div className="grid grid-cols-1 gap-4">
           {filteredSetups.length > 0 ? (
-            filteredSetups.map((setup) => <SetupCard key={setup.id} setup={setup} userTier={mockUser.tier} showDelay={true} />)
+            filteredSetups.map((setup) => <SetupCard key={setup.id} setup={setup} />)
           ) : (
             <div className="text-center py-12">
               <p className="text-tr-gray-light">No setups match your filters.</p>
