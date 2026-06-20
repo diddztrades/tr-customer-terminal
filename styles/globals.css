@@ -72,16 +72,28 @@ body {
 
 /* Card styles */
 .tr-card {
-  background: #1a1a1a;
-  border: 1px solid #2a2a2a;
-  padding: 1.5rem;
-  border-radius: 2px;
+  background: #151515;
+  border: 1px solid #242424;
+  padding: 1.25rem;
+  border-radius: 4px;
   transition: all 0.2s ease;
 }
 
 .tr-card:hover {
-  background: #252525;
-  border-color: #333;
+  background: #202020;
+  border-color: #2a2a2a;
+}
+
+.tr-label {
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: #999;
+}
+
+.tr-card-compact {
+  padding: 1rem;
 }
 
 .tr-card-dark {
