@@ -10,10 +10,10 @@ export default function BriefingsPage() {
 
   const renderBriefing = (briefing: (typeof safeBriefings)[number], showYear = false) => (
     <div key={briefing.id} className="tr-card relative">
-      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-3">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
         <div>
           <h3 className="text-lg font-bold mb-1">{briefing.title}</h3>
-          <div className="text-xs text-tr-gray-light font-mono">
+          <div className="text-sm text-tr-gray-light font-mono">
             {new Date(briefing.timestamp).toLocaleString('en-US', {
               month: 'short',
               day: 'numeric',
@@ -23,40 +23,40 @@ export default function BriefingsPage() {
             })}
           </div>
         </div>
-        <span className="text-xs font-mono uppercase tracking-wider text-tr-red">{briefing.type}</span>
+        <span className="text-sm font-mono uppercase tracking-wider text-tr-red">{briefing.type}</span>
       </div>
 
       <div className="space-y-3">
-        <p className="text-sm md:text-base leading-relaxed text-tr-white">
+        <p className="text-base leading-relaxed text-tr-white">
           {'fullContent' in briefing && briefing.fullContent ? briefing.fullContent : briefing.publicNarrative}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="text-xs font-mono text-tr-gray-light mb-1">Market State</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-1">Market State</div>
             <div className="text-sm text-tr-white">{briefing.marketState}</div>
           </div>
           <div>
-            <div className="text-xs font-mono text-tr-gray-light mb-1">Threat</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-1">Threat</div>
             <div className="text-sm text-tr-white">{briefing.threatHeadline}</div>
           </div>
         </div>
 
         {'partialAnalysis' in briefing && briefing.partialAnalysis ? (
           <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Partial Analysis</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Partial Analysis</div>
             <p className="text-sm text-tr-gray-light">{briefing.partialAnalysis}</p>
           </div>
         ) : null}
 
         {'tinoNotes' in briefing && briefing.tinoNotes ? (
           <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Tino's Notes</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Tino's Notes</div>
             <p className="text-sm italic text-tr-white">{briefing.tinoNotes}</p>
           </div>
         ) : (
           <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-xs font-mono uppercase tracking-wider text-tr-red">
+            <div className="text-sm font-mono uppercase tracking-wider text-tr-red">
               {briefing.upgradeReason || "Tino's execution notes available in Platinum."}
             </div>
           </div>
@@ -64,7 +64,7 @@ export default function BriefingsPage() {
 
         {'eliteCommentary' in briefing && briefing.eliteCommentary ? (
           <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Elite Commentary</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Elite Commentary</div>
             <p className="text-sm text-tr-white">{briefing.eliteCommentary}</p>
           </div>
         ) : null}
@@ -74,11 +74,11 @@ export default function BriefingsPage() {
 
   return (
     <TerminalShell userTier={user.tier} currentSection="briefings">
-      <div className="p-4 md:p-8 space-y-8">
+      <div className="px-5 py-6 space-y-5">
         {/* Page Title */}
         <div className="space-y-2">
           <h1 className="tr-heading tr-heading-1">BRIEFINGS</h1>
-          <p className="text-tr-gray-light text-sm md:text-base">Daily and weekly market intelligence from Tino.</p>
+          <p className="text-tr-gray-light text-base">Daily and weekly market intelligence from Tino.</p>
         </div>
 
         {/* Daily Briefings */}

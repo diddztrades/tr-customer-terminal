@@ -24,31 +24,31 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
 
   return (
     <TerminalShell userTier={user.tier} currentSection="alerts">
-      <div className="p-4 md:p-8 space-y-8">
+      <div className="px-5 py-6 space-y-5">
         {/* Page Title */}
         <div className="space-y-2">
           <h1 className="tr-heading tr-heading-1">ALERTS</h1>
-          <p className="text-tr-gray-light text-sm md:text-base">
+          <p className="text-tr-gray-light text-base">
             Real-time market alerts, setup notifications, and macro warnings.
           </p>
         </div>
 
         {/* Alert Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 gap-3">
           <div className="tr-card">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Unread</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Unread</div>
             <div className="text-3xl font-bold text-tr-red">{unreadCount}</div>
           </div>
           <div className="tr-card">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Total</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Total</div>
             <div className="text-3xl font-bold">{safeAlerts.length}</div>
           </div>
           <div className="tr-card">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Alert Mode</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Alert Mode</div>
             <div className="text-sm uppercase">Enabled</div>
           </div>
           <div className="tr-card">
-            <div className="text-xs font-mono text-tr-gray-light mb-2">Tier Access</div>
+            <div className="text-sm font-mono text-tr-gray-light mb-2">Tier Access</div>
             <div className="text-sm uppercase text-tr-red">{user.tier}</div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
         <div className="flex gap-2">
           <a
             href="/alerts"
-            className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+            className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
               readFilter === 'unread'
                 ? 'bg-tr-red text-tr-black border-tr-red'
                 : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
@@ -67,7 +67,7 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
           </a>
           <a
             href="/alerts?filter=all"
-            className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+            className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
               readFilter === 'all'
                 ? 'bg-tr-red text-tr-black border-tr-red'
                 : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
@@ -81,12 +81,12 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
         <div className="space-y-3">
           {filteredAlerts.map((alert) => (
             <div key={alert.id} className="tr-card relative">
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3">
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
                     {!alert.read && <div className="w-2 h-2 bg-tr-red rounded-full"></div>}
                     <span className={`tr-badge ${priorityColor[alert.priority]}`}>{alert.priority}</span>
-                    <span className="text-xs font-mono text-tr-gray-light">{alert.alertType}</span>
+                    <span className="text-sm font-mono text-tr-gray-light">{alert.alertType}</span>
                   </div>
 
                   <h3 className="font-bold mb-2 text-tr-red">{alert.asset}</h3>
@@ -95,22 +95,22 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
                   </p>
 
                   {'partialContext' in alert && alert.partialContext ? (
-                    <p className="text-xs text-tr-gray-light mb-2">{alert.partialContext}</p>
+                    <p className="text-sm text-tr-gray-light mb-2">{alert.partialContext}</p>
                   ) : null}
 
                   {'executionDetails' in alert && alert.executionDetails ? (
-                    <p className="text-xs text-tr-gray-light mb-2">{alert.executionDetails}</p>
+                    <p className="text-sm text-tr-gray-light mb-2">{alert.executionDetails}</p>
                   ) : (
-                    <div className="text-xs font-mono uppercase tracking-wider text-tr-red mb-2">
+                    <div className="text-sm font-mono uppercase tracking-wider text-tr-red mb-2">
                       {alert.upgradeReason || 'Real-time alert context available in Platinum.'}
                     </div>
                   )}
 
                   {'eliteCommentary' in alert && alert.eliteCommentary ? (
-                    <p className="text-xs text-tr-white mb-2">{alert.eliteCommentary}</p>
+                    <p className="text-sm text-tr-white mb-2">{alert.eliteCommentary}</p>
                   ) : null}
 
-                  <div className="text-xs text-tr-gray-light font-mono">
+                  <div className="text-sm text-tr-gray-light font-mono">
                     {new Date(alert.timestamp).toLocaleString('en-US', {
                       month: 'short',
                       day: 'numeric',

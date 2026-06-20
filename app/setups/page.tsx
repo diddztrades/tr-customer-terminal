@@ -25,12 +25,12 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
 
   return (
     <TerminalShell userTier={user.tier} currentSection="setups">
-      <div className="p-4 md:p-8 space-y-8">
+      <div className="px-5 py-6 space-y-5">
         {/* Page Title */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <div className="space-y-2">
             <h1 className="tr-heading tr-heading-1">SETUPS</h1>
-            <p className="text-tr-gray-light text-sm md:text-base">Market-ready trade setup cards with full execution context.</p>
+            <p className="text-tr-gray-light text-base">Market-ready trade setup cards with full execution context.</p>
           </div>
 
           {/* Filters */}
@@ -41,7 +41,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
                 <a
                   key={dir}
                   href={filterDirection === dir ? '/setups' : `/setups?direction=${dir}`}
-                  className={`text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+                  className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
                     filterDirection === dir
                       ? 'bg-tr-red text-tr-black border-tr-red'
                       : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
@@ -56,7 +56,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
             {filterDirection && (
               <a
                 href="/setups"
-                className="text-xs font-mono px-3 py-2 rounded uppercase tracking-wider border border-tr-gray-dark text-tr-gray-light hover:text-tr-white"
+                className="text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border border-tr-gray-dark text-tr-gray-light hover:text-tr-white"
               >
                 Reset
               </a>
@@ -65,7 +65,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
         </div>
 
         {/* Setups Grid */}
-        <div className="grid grid-cols-1 gap-4">
+        <div className="grid grid-cols-1 gap-3">
           {filteredSetups.length > 0 ? (
             filteredSetups.map((setup) => <SetupCard key={setup.id} setup={setup} />)
           ) : (
@@ -77,7 +77,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
 
         {/* Info Box */}
         <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
-          <p className="text-xs md:text-sm text-tr-gray-light">
+          <p className="text-sm text-tr-gray-light">
             <span className="text-tr-red font-bold">Bronze</span> members see setup teasers.{' '}
             <span className="text-tr-red font-bold">Gold</span> members see full setups with delay.{' '}
             <span className="text-tr-red font-bold">Platinum+</span> receive real-time alerts and execution notes.

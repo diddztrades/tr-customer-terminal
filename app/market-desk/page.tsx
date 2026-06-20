@@ -18,11 +18,11 @@ export default function MarketDeskPage() {
 
   return (
     <TerminalShell userTier={mockUser.tier} currentSection="market-desk">
-      <div className="p-4 md:p-8 space-y-8">
+      <div className="px-5 py-6 space-y-5">
         {/* Page Title */}
         <div className="space-y-2">
           <h1 className="tr-heading tr-heading-1">MARKET DESK</h1>
-          <p className="text-tr-gray-light text-sm md:text-base">Intelligence terminal: macro threats, confirmation board, and system signals.</p>
+          <p className="text-tr-gray-light text-base">Intelligence terminal: macro threats, confirmation board, and system signals.</p>
         </div>
 
         {hasMarketDeskAccess ? (
@@ -30,18 +30,18 @@ export default function MarketDeskPage() {
             {/* Market Pulse */}
             <div className="space-y-3">
               <h2 className="tr-heading tr-heading-3">Market Pulse</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 <div className="tr-card">
-                  <div className="text-xs font-mono text-tr-gray-light mb-2">Market Status</div>
+                  <div className="text-sm font-mono text-tr-gray-light mb-2">Market Status</div>
                   <div className="text-3xl font-bold text-green-400">{market.marketStatus.replace('_', ' ')}</div>
-                  <div className="text-xs text-tr-gray-light mt-2">Equities following through. Breadth confirmation needed.</div>
+                  <div className="text-sm text-tr-gray-light mt-2">Equities following through. Breadth confirmation needed.</div>
                 </div>
                 <div className="tr-card">
-                  <div className="text-xs font-mono text-tr-gray-light mb-2">Threat Level</div>
+                  <div className="text-sm font-mono text-tr-gray-light mb-2">Threat Level</div>
                   <div className={`text-3xl font-bold ${market.threatLevel === 'CRITICAL' ? 'text-tr-red' : market.threatLevel === 'ELEVATED' ? 'text-yellow-400' : 'text-green-400'}`}>
                     {market.threatLevel}
                   </div>
-                  <div className="text-xs text-tr-gray-light mt-2">Event risk present. Jobs data Friday.</div>
+                  <div className="text-sm text-tr-gray-light mt-2">Event risk present. Jobs data Friday.</div>
                 </div>
               </div>
             </div>
@@ -49,13 +49,13 @@ export default function MarketDeskPage() {
             {/* Confirmation Board */}
             <div className="space-y-3">
               <h2 className="tr-heading tr-heading-3">Confirmation Board</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-3">
                 {market.confirmationBoard.map((item, i) => (
                   <div key={i} className="tr-card">
                     <div className="flex items-start justify-between mb-3">
                       <div className="font-mono text-sm uppercase font-bold">{item.label}</div>
                       <span
-                        className={`text-xs font-mono uppercase tracking-wider px-2 py-1 rounded border ${
+                        className={`text-sm font-mono uppercase tracking-wider px-2 py-1 rounded border ${
                           item.status === 'CONFIRM'
                             ? 'bg-green-400/10 text-green-400 border-green-400'
                             : item.status === 'CONFLICT'
@@ -80,7 +80,7 @@ export default function MarketDeskPage() {
                   <div key={i} className={`tr-card border ${riskColor[flag.severity]}`}>
                     <div className="flex items-start justify-between mb-2">
                       <div className="font-mono font-bold uppercase">{flag.asset}</div>
-                      <span className={`text-xs font-mono uppercase tracking-wider px-2 py-1 rounded ${riskColor[flag.severity]}`}>
+                      <span className={`text-sm font-mono uppercase tracking-wider px-2 py-1 rounded ${riskColor[flag.severity]}`}>
                         {flag.severity}
                       </span>
                     </div>
@@ -92,14 +92,14 @@ export default function MarketDeskPage() {
             </div>
 
             {/* Intelligence Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               {/* Macro Threats */}
               <div className="tr-card">
                 <h3 className="font-mono text-sm uppercase font-bold mb-4">Macro Threats</h3>
                 <ul className="space-y-2">
                   {market.macroThreats.map((threat, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <span className="text-tr-red text-xs">⚠</span>
+                      <span className="text-tr-red text-sm">⚠</span>
                       <span className="text-sm">{threat}</span>
                     </li>
                   ))}
@@ -129,17 +129,17 @@ export default function MarketDeskPage() {
             </div>
 
             {/* Placeholder Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-3">
               <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
-                <h3 className="font-mono text-xs uppercase font-bold mb-2 text-tr-gray-light">TR Signals</h3>
+                <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">TR Signals</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>
               <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
-                <h3 className="font-mono text-xs uppercase font-bold mb-2 text-tr-gray-light">Gamma Exposure</h3>
+                <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">Gamma Exposure</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>
               <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
-                <h3 className="font-mono text-xs uppercase font-bold mb-2 text-tr-gray-light">ACTUS Score</h3>
+                <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">ACTUS Score</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>
             </div>

@@ -10,18 +10,18 @@ export default function MembershipPage() {
 
   return (
     <TerminalShell userTier={mockUser.tier} currentSection="membership">
-      <div className="p-4 md:p-8 space-y-8">
+      <div className="px-5 py-6 space-y-5">
         {/* Page Title */}
         <div className="space-y-2">
           <h1 className="tr-heading tr-heading-1">MEMBERSHIP</h1>
-          <p className="text-tr-gray-light text-sm md:text-base">Choose your trader identity and intelligence access level.</p>
+          <p className="text-tr-gray-light text-base">Choose your trader identity and intelligence access level.</p>
         </div>
 
         {/* Current Status */}
         <div className="tr-card tr-accent-border">
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-bold text-lg">Your Current Plan</h2>
-            <span className="text-xs font-mono uppercase tracking-wider text-tr-red">{mockUser.tier}</span>
+            <span className="text-sm font-mono uppercase tracking-wider text-tr-red">{mockUser.tier}</span>
           </div>
           <p className="text-sm text-tr-gray-light">
             Joined {mockUser.joinedAt.toLocaleString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}. Access level:{' '}
@@ -33,23 +33,23 @@ export default function MembershipPage() {
         <div className="space-y-3">
           <h2 className="tr-heading tr-heading-3">Compare Plans</h2>
 
-          <div className="overflow-x-auto">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 min-w-max md:min-w-full">
+          <div>
+            <div className="grid grid-cols-1 gap-3">
               {tiers.map((tier) => {
                 const tierInfo = membershipTiers[tier];
                 const isCurrent = mockUser.tier === tier;
 
                 return (
-                  <div key={tier} className={`tr-card ${isCurrent ? 'tr-accent-border border-2' : ''}`}>
+                  <div key={tier} className={`tr-card tr-membership-card ${isCurrent ? 'tr-accent-border border-2' : ''}`}>
                     <div className="mb-4">
                       <h3 className="text-xl font-bold mb-1">{tierInfo.name}</h3>
-                      <p className="text-xs text-tr-gray-light italic">{tierInfo.description}</p>
+                      <p className="text-sm text-tr-gray-light italic">{tierInfo.description}</p>
                       <div className="text-lg font-bold text-tr-red mt-2">{tierInfo.price}</div>
                     </div>
 
                     <div className="space-y-2 mb-4 pb-4 border-b border-tr-gray-dark">
                       {tierInfo.features.map((feature, i) => (
-                        <div key={i} className="flex items-start gap-2 text-xs">
+                        <div key={i} className="flex items-start gap-2 text-sm">
                           <span className="text-green-400 text-sm">✓</span>
                           <span className="text-tr-gray-light">{feature}</span>
                         </div>
@@ -57,7 +57,7 @@ export default function MembershipPage() {
                     </div>
 
                     {isCurrent ? (
-                      <button disabled className="w-full py-2 bg-tr-gray-dark text-tr-gray-light text-xs font-mono uppercase tracking-wider rounded opacity-50">
+                      <button disabled className="w-full py-2 bg-tr-gray-dark text-tr-gray-light text-sm font-mono uppercase tracking-wider rounded opacity-50">
                         Current Plan
                       </button>
                     ) : (
@@ -67,7 +67,7 @@ export default function MembershipPage() {
                           e.preventDefault();
                           alert(`Upgrade to ${tierInfo.name} - Demo only. In production, this would show payment flow.`);
                         }}
-                        className="block w-full py-2 bg-tr-red text-tr-black text-xs font-mono uppercase tracking-wider rounded font-bold hover:bg-opacity-90 transition-all text-center"
+                        className="block w-full py-2 bg-tr-red text-tr-black text-sm font-mono uppercase tracking-wider rounded font-bold hover:bg-opacity-90 transition-all text-center"
                       >
                         Upgrade
                       </Link>
@@ -80,14 +80,14 @@ export default function MembershipPage() {
         </div>
 
         {/* Tier Features Detail */}
-        <div className="space-y-4">
+        <div className="space-y-3">
           <h2 className="tr-heading tr-heading-3">Feature Breakdown</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-3">
             {/* Setups */}
             <div className="tr-card">
               <h3 className="font-bold mb-3 text-tr-red">Setup Access</h3>
-              <ul className="text-xs space-y-2">
+              <ul className="text-sm space-y-2">
                 <li className="flex justify-between">
                   <span>Bronze:</span>
                   <span className="text-tr-gray-light">Teasers only</span>
@@ -110,7 +110,7 @@ export default function MembershipPage() {
             {/* Market Intelligence */}
             <div className="tr-card">
               <h3 className="font-bold mb-3 text-tr-red">Market Desk</h3>
-              <ul className="text-xs space-y-2">
+              <ul className="text-sm space-y-2">
                 <li className="flex justify-between">
                   <span>Bronze:</span>
                   <span className="text-tr-gray-light">Locked</span>
@@ -133,7 +133,7 @@ export default function MembershipPage() {
             {/* Education */}
             <div className="tr-card">
               <h3 className="font-bold mb-3 text-tr-red">Academy</h3>
-              <ul className="text-xs space-y-2">
+              <ul className="text-sm space-y-2">
                 <li className="flex justify-between">
                   <span>Bronze:</span>
                   <span className="text-tr-gray-light">Start Here only</span>
@@ -156,7 +156,7 @@ export default function MembershipPage() {
             {/* Community */}
             <div className="tr-card">
               <h3 className="font-bold mb-3 text-tr-red">Community Access</h3>
-              <ul className="text-xs space-y-2">
+              <ul className="text-sm space-y-2">
                 <li className="flex justify-between">
                   <span>Bronze:</span>
                   <span className="text-tr-gray-light">Preview</span>
@@ -194,7 +194,7 @@ export default function MembershipPage() {
                 </span>
               </div>
               <div className="pt-2 border-t border-tr-gray-dark">
-                <button className="text-xs font-mono text-tr-red hover:text-tr-red/80 uppercase tracking-wider">
+                <button className="text-sm font-mono text-tr-red hover:text-tr-red/80 uppercase tracking-wider">
                   Manage Billing →
                 </button>
               </div>

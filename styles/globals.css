@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 * {
   margin: 0;
   padding: 0;
@@ -11,8 +15,9 @@ body {
   background: #0a0a0a;
   color: #f5f5f5;
   font-family: 'IBM Plex Sans', sans-serif;
-  line-height: 1.5;
-  letter-spacing: -0.02em;
+  font-size: 16px;
+  line-height: 1.55;
+  letter-spacing: 0;
 }
 
 /* TR Terminal Styling */
@@ -25,29 +30,29 @@ body {
 .tr-heading {
   font-family: 'IBM Plex Sans Condensed', sans-serif;
   font-weight: 700;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: #f5f5f5;
 }
 
 .tr-heading-1 {
-  font-size: 48px;
-  line-height: 52px;
+  font-size: 32px;
+  line-height: 36px;
 }
 
 .tr-heading-2 {
-  font-size: 36px;
-  line-height: 40px;
-}
-
-.tr-heading-3 {
-  font-size: 28px;
+  font-size: 26px;
   line-height: 32px;
 }
 
+.tr-heading-3 {
+  font-size: 21px;
+  line-height: 26px;
+}
+
 .tr-heading-4 {
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 18px;
+  line-height: 24px;
 }
 
 .tr-mono {
@@ -72,16 +77,18 @@ body {
 
 /* Card styles */
 .tr-card {
-  background: #151515;
-  border: 1px solid #242424;
-  padding: 1.25rem;
-  border-radius: 4px;
-  transition: all 0.2s ease;
+  background: linear-gradient(180deg, #171717 0%, #101010 100%);
+  border: 1px solid #2d2d2d;
+  border-left: 3px solid rgba(230, 57, 70, 0.72);
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 10px 30px rgba(0, 0, 0, 0.22);
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .tr-card:hover {
-  background: #202020;
-  border-color: #2a2a2a;
+  background: linear-gradient(180deg, #1d1d1d 0%, #121212 100%);
+  border-color: #3a3a3a;
 }
 
 .tr-label {
@@ -96,6 +103,11 @@ body {
   padding: 1rem;
 }
 
+.tr-membership-card {
+  border-left-color: #e63946;
+  background: linear-gradient(180deg, rgba(230, 57, 70, 0.08) 0%, #111 42%, #0c0c0c 100%);
+}
+
 .tr-card-dark {
   background: #0a0a0a;
   border-color: #1a1a1a;
@@ -104,12 +116,12 @@ body {
 /* Status badges */
 .tr-badge {
   display: inline-block;
-  padding: 0.25rem 0.75rem;
-  font-size: 10px;
+  padding: 0.3rem 0.65rem;
+  font-size: 11px;
   font-family: 'IBM Plex Mono', monospace;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-radius: 1px;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
   border: 1px solid;
 }
 
@@ -163,9 +175,11 @@ body {
 
 /* Grid lines */
 .tr-grid-bg {
-  background-image: linear-gradient(rgba(42, 42, 42, 0.1) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 42, 42, 0.1) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(230, 57, 70, 0.12), transparent 30%),
+    linear-gradient(rgba(42, 42, 42, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 42, 42, 0.12) 1px, transparent 1px);
+  background-size: auto, 32px 32px, 32px 32px;
 }
 
 /* Market status colors */
@@ -280,12 +294,12 @@ body {
   }
 
   .tr-heading-1 {
-    font-size: 28px;
-    line-height: 32px;
+    font-size: 30px;
+    line-height: 34px;
   }
 
   .tr-heading-2 {
-    font-size: 22px;
-    line-height: 28px;
+    font-size: 24px;
+    line-height: 30px;
   }
 }

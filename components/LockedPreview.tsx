@@ -17,12 +17,12 @@ export default function LockedPreview({ userTier, requiredTier, children, blurre
       {blurred && <div className={`${blurred ? 'tr-locked' : ''}`}>{children}</div>}
 
       <div className="tr-locked-overlay">
-        <div className="text-center space-y-4 px-6">
-          <div className="text-tr-red text-xs font-mono uppercase tracking-wider">⚠ LOCKED</div>
-          <div className="text-tr-white text-sm md:text-base max-w-xs">{getUpgradeMessage(userTier, requiredTier)}</div>
+        <div className="text-center space-y-3 px-6">
+          <div className="text-tr-red text-sm font-mono uppercase tracking-wider">⚠ LOCKED</div>
+          <div className="text-tr-white text-base max-w-xs">{getUpgradeMessage(userTier, requiredTier)}</div>
           <Link
             href="/membership"
-            className="inline-block mt-4 px-6 py-2 bg-tr-red text-tr-black font-bold text-xs uppercase tracking-wider rounded hover:bg-opacity-90 transition-all"
+            className="inline-block mt-4 px-6 py-2 bg-tr-red text-tr-black font-bold text-sm uppercase tracking-wider rounded hover:bg-opacity-90 transition-all"
           >
             View Plans
           </Link>

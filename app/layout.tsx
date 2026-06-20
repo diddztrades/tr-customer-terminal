@@ -1,9 +1,15 @@
 import type { Metadata } from 'next';
+import type { Viewport } from 'next';
 import '../styles/globals.css';
 
 export const metadata: Metadata = {
   title: 'Traders Reality Market Terminal',
   description: 'Professional market intelligence and trading setups for serious traders',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
