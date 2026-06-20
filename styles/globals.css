@@ -1,0 +1,279 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #0a0a0a;
+  color: #f5f5f5;
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+}
+
+/* TR Terminal Styling */
+.tr-terminal {
+  background: #0a0a0a;
+  border: 1px solid #2a2a2a;
+  border-radius: 2px;
+}
+
+.tr-heading {
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f5f5f5;
+}
+
+.tr-heading-1 {
+  font-size: 48px;
+  line-height: 52px;
+}
+
+.tr-heading-2 {
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.tr-heading-3 {
+  font-size: 28px;
+  line-height: 32px;
+}
+
+.tr-heading-4 {
+  font-size: 22px;
+  line-height: 28px;
+}
+
+.tr-mono {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.tr-accent-red {
+  color: #e63946;
+}
+
+.tr-accent-border {
+  border-left: 3px solid #e63946;
+}
+
+.tr-grid {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Card styles */
+.tr-card {
+  background: #1a1a1a;
+  border: 1px solid #2a2a2a;
+  padding: 1.5rem;
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.tr-card:hover {
+  background: #252525;
+  border-color: #333;
+}
+
+.tr-card-dark {
+  background: #0a0a0a;
+  border-color: #1a1a1a;
+}
+
+/* Status badges */
+.tr-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  font-size: 10px;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-radius: 1px;
+  border: 1px solid;
+}
+
+.tr-badge-success {
+  background: rgba(46, 196, 111, 0.1);
+  border-color: #2ec46f;
+  color: #2ec46f;
+}
+
+.tr-badge-danger {
+  background: rgba(230, 57, 70, 0.1);
+  border-color: #e63946;
+  color: #e63946;
+}
+
+.tr-badge-warning {
+  background: rgba(255, 193, 7, 0.1);
+  border-color: #ffc107;
+  color: #ffc107;
+}
+
+.tr-badge-info {
+  background: rgba(25, 103, 210, 0.1);
+  border-color: #1967d2;
+  color: #1967d2;
+}
+
+.tr-badge-neutral {
+  background: rgba(102, 102, 102, 0.1);
+  border-color: #666;
+  color: #999;
+}
+
+/* Locked content */
+.tr-locked {
+  opacity: 0.5;
+  filter: blur(3px);
+  pointer-events: none;
+}
+
+.tr-locked-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+  z-index: 10;
+}
+
+/* Grid lines */
+.tr-grid-bg {
+  background-image: linear-gradient(rgba(42, 42, 42, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(42, 42, 42, 0.1) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Market status colors */
+.tr-status-risk-on {
+  color: #2ec46f;
+  border-color: #2ec46f;
+}
+
+.tr-status-risk-off {
+  color: #e63946;
+  border-color: #e63946;
+}
+
+.tr-status-mixed {
+  color: #ffc107;
+  border-color: #ffc107;
+}
+
+.tr-status-stand-down {
+  color: #666;
+  border-color: #666;
+}
+
+.tr-status-event-risk {
+  color: #ff6b35;
+  border-color: #ff6b35;
+}
+
+/* Navigation */
+.tr-nav {
+  background: #0a0a0a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 0.75rem 1rem;
+  display: flex;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.tr-nav-item {
+  font-size: 12px;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.5rem 0;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #999;
+}
+
+.tr-nav-item:hover {
+  color: #f5f5f5;
+}
+
+.tr-nav-item.active {
+  color: #e63946;
+  border-bottom-color: #e63946;
+}
+
+/* Unlock prompt */
+.tr-unlock-prompt {
+  background: rgba(230, 57, 70, 0.05);
+  border: 1px dashed #e63946;
+  padding: 1.5rem;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.tr-unlock-prompt-text {
+  color: #999;
+  font-size: 14px;
+  margin-bottom: 1rem;
+}
+
+.tr-upgrade-btn {
+  background: #e63946;
+  color: #0a0a0a;
+  padding: 0.75rem 2rem;
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'IBM Plex Sans Condensed', sans-serif;
+}
+
+.tr-upgrade-btn:hover {
+  background: #d62828;
+  transform: translateY(-1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tr-nav {
+    gap: 1rem;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .tr-grid {
+    gap: 0.75rem;
+    padding: 0.75rem;
+  }
+
+  .tr-card {
+    padding: 1rem;
+  }
+
+  .tr-heading-1 {
+    font-size: 28px;
+    line-height: 32px;
+  }
+
+  .tr-heading-2 {
+    font-size: 22px;
+    line-height: 28px;
+  }
+}
