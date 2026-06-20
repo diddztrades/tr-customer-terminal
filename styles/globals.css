@@ -1,161 +1,253 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --tr-bg: #0A0A0A;
+  --tr-surface: #141414;
+  --tr-surface-alt: #1B1B1B;
+  --tr-border: #262626;
+  --tr-red: #E8001E;
+  --tr-green: #16C784;
+  --tr-gold: #F2B705;
+  --tr-bronze: #C2783C;
+  --tr-chrome: #ECECEC;
+  --tr-text-primary: #F5F5F5;
+  --tr-text-secondary: #9A9A9A;
+  --tr-text-tertiary: #5C5C5C;
+}
+
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
 }
 
 html,
 body {
-  background: #0a0a0a;
-  color: #f5f5f5;
+  min-height: 100%;
+  background: var(--tr-bg);
+  color: var(--tr-text-primary);
   font-family: 'IBM Plex Sans', sans-serif;
   font-size: 16px;
-  line-height: 1.55;
+  line-height: 1.45;
   letter-spacing: 0;
 }
 
-/* TR Terminal Styling */
-.tr-terminal {
-  background: #0a0a0a;
-  border: 1px solid #2a2a2a;
-  border-radius: 2px;
+body {
+  overflow-x: hidden;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.tr-grid-bg {
+  background:
+    radial-gradient(circle at 50% -10%, rgba(232, 0, 30, 0.14), transparent 34%),
+    linear-gradient(rgba(38, 38, 38, 0.32) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(38, 38, 38, 0.32) 1px, transparent 1px),
+    var(--tr-bg);
+  background-size: auto, 32px 32px, 32px 32px, auto;
 }
 
 .tr-heading {
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  color: var(--tr-text-primary);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.035em;
   text-transform: uppercase;
-  color: #f5f5f5;
 }
 
 .tr-heading-1 {
-  font-size: 32px;
+  font-size: 34px;
   line-height: 36px;
 }
 
 .tr-heading-2 {
-  font-size: 26px;
+  font-size: 28px;
   line-height: 32px;
 }
 
 .tr-heading-3 {
-  font-size: 21px;
+  font-size: 22px;
   line-height: 26px;
 }
 
 .tr-heading-4 {
   font-size: 18px;
-  line-height: 24px;
+  line-height: 22px;
 }
 
 .tr-mono {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 12px;
   letter-spacing: 0;
 }
 
-.tr-accent-red {
-  color: #e63946;
+.tr-label {
+  color: var(--tr-text-tertiary);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  line-height: 1;
+  text-transform: uppercase;
 }
 
-.tr-accent-border {
-  border-left: 3px solid #e63946;
-}
-
-.tr-grid {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-/* Card styles */
 .tr-card {
-  background: linear-gradient(180deg, #171717 0%, #101010 100%);
-  border: 1px solid #2d2d2d;
-  border-left: 3px solid rgba(230, 57, 70, 0.72);
-  padding: 1rem;
-  border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035), 0 10px 30px rgba(0, 0, 0, 0.22);
+  background: var(--tr-surface);
+  border: 1px solid var(--tr-border);
+  border-radius: 10px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  padding: 14px;
   transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .tr-card:hover {
-  background: linear-gradient(180deg, #1d1d1d 0%, #121212 100%);
-  border-color: #3a3a3a;
-}
-
-.tr-label {
-  font-size: 10px;
-  font-family: 'IBM Plex Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: #999;
-}
-
-.tr-card-compact {
-  padding: 1rem;
-}
-
-.tr-membership-card {
-  border-left-color: #e63946;
-  background: linear-gradient(180deg, rgba(230, 57, 70, 0.08) 0%, #111 42%, #0c0c0c 100%);
+  background: var(--tr-surface-alt);
+  border-color: #333;
 }
 
 .tr-card-dark {
-  background: #0a0a0a;
-  border-color: #1a1a1a;
+  background: var(--tr-bg);
+  border-color: var(--tr-border);
 }
 
-/* Status badges */
+.tr-card-compact {
+  padding: 12px;
+}
+
+.tr-accent-border {
+  border-left: 3px solid var(--tr-red);
+}
+
+.tr-membership-card {
+  background: linear-gradient(180deg, rgba(232, 0, 30, 0.08) 0%, var(--tr-surface) 42%, #101010 100%);
+}
+
+.tr-tier-bronze {
+  border-color: rgba(194, 120, 60, 0.55);
+}
+
+.tr-tier-gold {
+  border-color: rgba(242, 183, 5, 0.55);
+}
+
+.tr-tier-platinum {
+  border-color: rgba(236, 236, 236, 0.55);
+}
+
+.tr-tier-black {
+  border-color: rgba(245, 245, 245, 0.36);
+}
+
 .tr-badge {
   display: inline-block;
-  padding: 0.3rem 0.65rem;
-  font-size: 11px;
-  font-family: 'IBM Plex Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  border-radius: 4px;
   border: 1px solid;
+  border-radius: 999px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  line-height: 1;
+  padding: 5px 9px;
+  text-transform: uppercase;
 }
 
 .tr-badge-success {
-  background: rgba(46, 196, 111, 0.1);
-  border-color: #2ec46f;
-  color: #2ec46f;
+  background: rgba(22, 199, 132, 0.1);
+  border-color: var(--tr-green);
+  color: var(--tr-green);
 }
 
 .tr-badge-danger {
-  background: rgba(230, 57, 70, 0.1);
-  border-color: #e63946;
-  color: #e63946;
+  background: rgba(232, 0, 30, 0.1);
+  border-color: var(--tr-red);
+  color: var(--tr-red);
 }
 
 .tr-badge-warning {
-  background: rgba(255, 193, 7, 0.1);
-  border-color: #ffc107;
-  color: #ffc107;
+  background: rgba(242, 183, 5, 0.1);
+  border-color: var(--tr-gold);
+  color: var(--tr-gold);
 }
 
 .tr-badge-info {
-  background: rgba(25, 103, 210, 0.1);
-  border-color: #1967d2;
-  color: #1967d2;
+  background: rgba(236, 236, 236, 0.06);
+  border-color: var(--tr-chrome);
+  color: var(--tr-chrome);
 }
 
 .tr-badge-neutral {
-  background: rgba(102, 102, 102, 0.1);
-  border-color: #666;
-  color: #999;
+  background: rgba(236, 236, 236, 0.06);
+  border-color: var(--tr-border);
+  color: var(--tr-text-secondary);
 }
 
-/* Locked content */
+.tr-lock-callout {
+  background: rgba(232, 0, 30, 0.06);
+  border: 1px dashed rgba(232, 0, 30, 0.55);
+  border-radius: 8px;
+  color: var(--tr-red);
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 10px 12px;
+  text-transform: uppercase;
+}
+
+.tr-stat-grid {
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.tr-stat-cell {
+  background: var(--tr-surface-alt);
+  border: 1px solid var(--tr-border);
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.tr-terminal {
+  background: var(--tr-bg);
+  border: 1px solid var(--tr-border);
+  border-radius: 10px;
+}
+
+.tr-accent-red {
+  color: var(--tr-red);
+}
+
+.tr-status-risk-on {
+  border-color: var(--tr-green);
+  color: var(--tr-green);
+}
+
+.tr-status-risk-off {
+  border-color: var(--tr-red);
+  color: var(--tr-red);
+}
+
+.tr-status-mixed {
+  border-color: var(--tr-gold);
+  color: var(--tr-gold);
+}
+
+.tr-status-stand-down {
+  border-color: var(--tr-text-tertiary);
+  color: var(--tr-text-tertiary);
+}
+
+.tr-status-event-risk {
+  border-color: var(--tr-bronze);
+  color: var(--tr-bronze);
+}
+
 .tr-locked {
   opacity: 0.5;
   filter: blur(3px);
@@ -163,143 +255,45 @@ body {
 }
 
 .tr-locked-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
   align-items: center;
+  background: rgba(10, 10, 10, 0.78);
+  border-radius: 10px;
+  display: flex;
+  inset: 0;
   justify-content: center;
-  border-radius: 2px;
+  position: absolute;
   z-index: 10;
 }
 
-/* Grid lines */
-.tr-grid-bg {
-  background:
-    radial-gradient(circle at 50% 0%, rgba(230, 57, 70, 0.12), transparent 30%),
-    linear-gradient(rgba(42, 42, 42, 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(42, 42, 42, 0.12) 1px, transparent 1px);
-  background-size: auto, 32px 32px, 32px 32px;
-}
-
-/* Market status colors */
-.tr-status-risk-on {
-  color: #2ec46f;
-  border-color: #2ec46f;
-}
-
-.tr-status-risk-off {
-  color: #e63946;
-  border-color: #e63946;
-}
-
-.tr-status-mixed {
-  color: #ffc107;
-  border-color: #ffc107;
-}
-
-.tr-status-stand-down {
-  color: #666;
-  border-color: #666;
-}
-
-.tr-status-event-risk {
-  color: #ff6b35;
-  border-color: #ff6b35;
-}
-
-/* Navigation */
-.tr-nav {
-  background: #0a0a0a;
-  border-bottom: 1px solid #2a2a2a;
-  padding: 0.75rem 1rem;
-  display: flex;
-  gap: 2rem;
-  position: sticky;
-  top: 0;
-  z-index: 40;
-}
-
-.tr-nav-item {
-  font-size: 12px;
-  font-family: 'IBM Plex Mono', monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  padding: 0.5rem 0;
-  border-bottom: 2px solid transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  color: #999;
-}
-
-.tr-nav-item:hover {
-  color: #f5f5f5;
-}
-
-.tr-nav-item.active {
-  color: #e63946;
-  border-bottom-color: #e63946;
-}
-
-/* Unlock prompt */
 .tr-unlock-prompt {
-  background: rgba(230, 57, 70, 0.05);
-  border: 1px dashed #e63946;
-  padding: 1.5rem;
+  background: rgba(232, 0, 30, 0.05);
+  border: 1px dashed var(--tr-red);
+  border-radius: 10px;
+  padding: 18px;
   text-align: center;
-  border-radius: 2px;
 }
 
 .tr-unlock-prompt-text {
-  color: #999;
+  color: var(--tr-text-secondary);
   font-size: 14px;
-  margin-bottom: 1rem;
+  margin-bottom: 12px;
 }
 
 .tr-upgrade-btn {
-  background: #e63946;
-  color: #0a0a0a;
-  padding: 0.75rem 2rem;
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
+  background: var(--tr-red);
   border: none;
-  border-radius: 2px;
+  border-radius: 8px;
+  color: var(--tr-bg);
   cursor: pointer;
-  transition: all 0.2s ease;
-  font-family: 'IBM Plex Sans Condensed', sans-serif;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  padding: 12px 24px;
+  text-transform: uppercase;
+  transition: opacity 0.2s ease;
 }
 
 .tr-upgrade-btn:hover {
-  background: #d62828;
-  transform: translateY(-1px);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .tr-nav {
-    gap: 1rem;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .tr-grid {
-    gap: 0.75rem;
-    padding: 0.75rem;
-  }
-
-  .tr-card {
-    padding: 1rem;
-  }
-
-  .tr-heading-1 {
-    font-size: 30px;
-    line-height: 34px;
-  }
-
-  .tr-heading-2 {
-    font-size: 24px;
-    line-height: 30px;
-  }
+  opacity: 0.9;
 }

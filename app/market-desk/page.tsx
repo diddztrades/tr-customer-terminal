@@ -10,9 +10,9 @@ export default function MarketDeskPage() {
   const hasMarketDeskAccess = canAccessTier(mockUser.tier, 'platinum');
 
   const riskColor = {
-    LOW: 'bg-green-400/10 text-green-400 border-green-400',
-    NORMAL: 'bg-blue-400/10 text-blue-400 border-blue-400',
-    ELEVATED: 'bg-yellow-400/10 text-yellow-400 border-yellow-400',
+    LOW: 'bg-tr-green/10 text-tr-green border-tr-green',
+    NORMAL: 'bg-tr-chrome/10 text-tr-chrome border-tr-chrome',
+    ELEVATED: 'bg-tr-gold/10 text-tr-gold border-tr-gold',
     CRITICAL: 'bg-tr-red/10 text-tr-red border-tr-red',
   };
 
@@ -33,12 +33,12 @@ export default function MarketDeskPage() {
               <div className="grid grid-cols-1 gap-3">
                 <div className="tr-card">
                   <div className="text-sm font-mono text-tr-gray-light mb-2">Market Status</div>
-                  <div className="text-3xl font-bold text-green-400">{market.marketStatus.replace('_', ' ')}</div>
+                  <div className="text-3xl font-bold text-tr-green">{market.marketStatus.replace('_', ' ')}</div>
                   <div className="text-sm text-tr-gray-light mt-2">Equities following through. Breadth confirmation needed.</div>
                 </div>
                 <div className="tr-card">
                   <div className="text-sm font-mono text-tr-gray-light mb-2">Threat Level</div>
-                  <div className={`text-3xl font-bold ${market.threatLevel === 'CRITICAL' ? 'text-tr-red' : market.threatLevel === 'ELEVATED' ? 'text-yellow-400' : 'text-green-400'}`}>
+                  <div className={`text-3xl font-bold ${market.threatLevel === 'CRITICAL' ? 'text-tr-red' : market.threatLevel === 'ELEVATED' ? 'text-tr-gold' : 'text-tr-green'}`}>
                     {market.threatLevel}
                   </div>
                   <div className="text-sm text-tr-gray-light mt-2">Event risk present. Jobs data Friday.</div>
@@ -57,10 +57,10 @@ export default function MarketDeskPage() {
                       <span
                         className={`text-sm font-mono uppercase tracking-wider px-2 py-1 rounded border ${
                           item.status === 'CONFIRM'
-                            ? 'bg-green-400/10 text-green-400 border-green-400'
+                            ? 'bg-tr-green/10 text-tr-green border-tr-green'
                             : item.status === 'CONFLICT'
                               ? 'bg-tr-red/10 text-tr-red border-tr-red'
-                              : 'bg-gray-500/10 text-gray-400 border-gray-500'
+                              : 'bg-tr-gray-tertiary/10 text-tr-gray-light border-tr-gray-tertiary'
                         }`}
                       >
                         {item.status}
@@ -111,7 +111,7 @@ export default function MarketDeskPage() {
                 <h3 className="font-mono text-sm uppercase font-bold mb-4">Assets In Play</h3>
                 <div className="flex flex-wrap gap-2">
                   {market.assetsInPlay.map((asset) => (
-                    <span key={asset} className="px-3 py-1 bg-tr-gray-dark text-tr-red font-mono text-sm rounded border border-tr-gray-dark">
+                    <span key={asset} className="px-3 py-1 bg-tr-surface-alt text-tr-red font-mono text-sm rounded border border-tr-border">
                       {asset}
                     </span>
                   ))}
@@ -123,22 +123,22 @@ export default function MarketDeskPage() {
             <div className="tr-card tr-accent-border">
               <h3 className="font-mono text-sm uppercase font-bold mb-3 text-tr-red">Tino's Deep Read</h3>
               <p className="text-base leading-relaxed mb-4">{market.tinoRead}</p>
-              <div className="pt-4 border-t border-tr-gray-dark text-sm text-tr-gray-light">
+              <div className="pt-4 border-t border-tr-border text-sm text-tr-gray-light">
                 <strong>Stand Down Condition:</strong> {market.standDownCondition}
               </div>
             </div>
 
             {/* Placeholder Features */}
             <div className="grid grid-cols-1 gap-3">
-              <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
+              <div className="tr-card bg-tr-black/50 border-tr-border">
                 <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">TR Signals</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>
-              <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
+              <div className="tr-card bg-tr-black/50 border-tr-border">
                 <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">Gamma Exposure</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>
-              <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
+              <div className="tr-card bg-tr-black/50 border-tr-border">
                 <h3 className="font-mono text-sm uppercase font-bold mb-2 text-tr-gray-light">ACTUS Score</h3>
                 <div className="text-2xl font-bold text-tr-gray-light opacity-50">Coming Soon</div>
               </div>

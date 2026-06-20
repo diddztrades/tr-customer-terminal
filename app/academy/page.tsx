@@ -37,7 +37,7 @@ export default function AcademyPage() {
                   const canAccess = canAccessTier(mockUser.tier, lesson.tierRequired);
 
                   return (
-                    <div key={lesson.id} className={`tr-card ${canAccess ? '' : 'opacity-60 border-tr-gray-dark'}`}>
+                    <div key={lesson.id} className={`tr-card ${canAccess ? '' : 'opacity-60 border-tr-border'}`}>
                       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                         <div className="flex-1">
                           <h3 className="text-base md:text-lg font-bold mb-1">{lesson.title}</h3>
@@ -60,7 +60,7 @@ export default function AcademyPage() {
                           {canAccess && (
                             <>
                               <div className="text-sm text-tr-gray-light">{lesson.progress}% Complete</div>
-                              <div className="w-24 h-2 bg-tr-gray-dark rounded overflow-hidden">
+                              <div className="w-24 h-2 bg-tr-surface-alt rounded overflow-hidden">
                                 <div
                                   className="h-full bg-tr-red transition-all"
                                   style={{ width: `${lesson.progress}%` }}

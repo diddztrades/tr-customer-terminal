@@ -26,7 +26,7 @@ export default function TodayPage() {
         <div className="grid grid-cols-1 gap-3">
           <div className="tr-card">
             <div className="text-sm font-mono text-tr-gray-light uppercase tracking-[0.25em] mb-2">Market State</div>
-            <div className={`text-xl font-bold uppercase ${marketStateLabel === 'RISK_ON' ? 'text-green-400' : marketStateLabel === 'RISK_OFF' ? 'text-tr-red' : 'text-yellow-400'}`}>{marketStateLabel}</div>
+            <div className={`text-xl font-bold uppercase ${marketStateLabel === 'RISK_ON' ? 'text-tr-green' : marketStateLabel === 'RISK_OFF' ? 'text-tr-red' : 'text-tr-gold'}`}>{marketStateLabel}</div>
             <div className="mt-2 text-sm text-tr-gray-light">Confidence {marketStateConfidence}%</div>
           </div>
 
@@ -50,7 +50,7 @@ export default function TodayPage() {
 
           <div className="tr-card">
             <div className="text-sm font-mono text-tr-gray-light uppercase tracking-[0.25em] mb-2">Agent Conviction</div>
-            <div className={`text-xl font-bold uppercase ${agents.convictionScore >= 60 ? 'text-green-400' : agents.convictionScore <= 40 ? 'text-tr-red' : 'text-tr-gray-light'}`}>
+            <div className={`text-xl font-bold uppercase ${agents.convictionScore >= 60 ? 'text-tr-green' : agents.convictionScore <= 40 ? 'text-tr-red' : 'text-tr-gray-light'}`}>
               {agents.stance.replace('_', ' ')}
             </div>
             <div className="mt-2 text-sm text-tr-gray-light">Conviction {agents.convictionScore}</div>
@@ -75,7 +75,7 @@ export default function TodayPage() {
                     <div className="text-sm font-bold uppercase">{i + 1}. {o.asset}</div>
                     <div className="text-sm text-tr-gray-light">Op {o.opportunityScore} • Conf {o.confidenceScore}</div>
                   </div>
-                  <div className={`text-sm font-bold uppercase ${o.status === 'READY' ? 'text-green-400' : o.status === 'AVOID' ? 'text-tr-red' : 'text-tr-gray-light'}`}>{o.status}</div>
+                  <div className={`text-sm font-bold uppercase ${o.status === 'READY' ? 'text-tr-green' : o.status === 'AVOID' ? 'text-tr-red' : 'text-tr-gray-light'}`}>{o.status}</div>
                 </div>
               ))}
             </div>

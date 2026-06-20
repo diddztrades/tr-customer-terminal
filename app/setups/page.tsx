@@ -41,10 +41,10 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
                 <a
                   key={dir}
                   href={filterDirection === dir ? '/setups' : `/setups?direction=${dir}`}
-                  className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+                  className={`rounded-lg border px-4 py-2 font-tr-condensed text-sm font-bold uppercase tracking-[0.12em] transition-colors ${
                     filterDirection === dir
                       ? 'bg-tr-red text-tr-black border-tr-red'
-                      : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
+                      : 'bg-transparent border-tr-border text-tr-gray-light hover:text-tr-white'
                   }`}
                 >
                   {dir}
@@ -56,7 +56,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
             {filterDirection && (
               <a
                 href="/setups"
-                className="text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border border-tr-gray-dark text-tr-gray-light hover:text-tr-white"
+                className="rounded-lg border border-tr-border px-4 py-2 font-tr-condensed text-sm font-bold uppercase tracking-[0.12em] text-tr-gray-light hover:text-tr-white"
               >
                 Reset
               </a>
@@ -76,7 +76,7 @@ export default function SetupsPage({ searchParams }: SetupsPageProps) {
         </div>
 
         {/* Info Box */}
-        <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
+        <div className="tr-card tr-card-dark">
           <p className="text-sm text-tr-gray-light">
             <span className="text-tr-red font-bold">Bronze</span> members see setup teasers.{' '}
             <span className="text-tr-red font-bold">Gold</span> members see full setups with delay.{' '}

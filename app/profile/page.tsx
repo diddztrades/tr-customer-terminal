@@ -34,7 +34,7 @@ export default function ProfilePage() {
             </div>
             <div>
               <div className="text-sm font-mono text-tr-gray-light mb-2">Account Status</div>
-              <div className="text-lg font-bold text-green-400">Active</div>
+              <div className="text-lg font-bold text-tr-green">Active</div>
             </div>
           </div>
         </div>
@@ -57,7 +57,7 @@ export default function ProfilePage() {
             <div className="space-y-2 text-sm">
               <div className="flex justify-between">
                 <span className="text-tr-gray-light">Status:</span>
-                <span className="text-green-400">Active</span>
+                <span className="text-tr-green">Active</span>
               </div>
               <div className="flex justify-between">
                 <span className="text-tr-gray-light">Next Renewal:</span>
@@ -79,18 +79,18 @@ export default function ProfilePage() {
                 <span className="text-sm font-mono">Overall Progress</span>
                 <span className="text-sm font-mono text-tr-red">{Math.round(progressPercent)}%</span>
               </div>
-              <div className="h-3 bg-tr-gray-dark rounded overflow-hidden">
+              <div className="h-3 bg-tr-surface-alt rounded overflow-hidden">
                 <div className="h-full bg-tr-red transition-all" style={{ width: `${progressPercent}%` }}></div>
               </div>
             </div>
 
             <div className="grid grid-cols-1 gap-3 text-center">
               <div>
-                <div className="text-2xl font-bold text-green-400">{completedCount}</div>
+                <div className="text-2xl font-bold text-tr-green">{completedCount}</div>
                 <div className="text-sm text-tr-gray-light mt-1">Completed</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-yellow-400">{totalLessons - completedCount}</div>
+                <div className="text-2xl font-bold text-tr-gold">{totalLessons - completedCount}</div>
                 <div className="text-sm text-tr-gray-light mt-1">Remaining</div>
               </div>
               <div>
@@ -117,20 +117,20 @@ export default function ProfilePage() {
 
           <div className="tr-card">
             <div className="space-y-3">
-              <div className="flex items-center justify-between pb-3 border-b border-tr-gray-dark">
+              <div className="flex items-center justify-between pb-3 border-b border-tr-border">
                 <label className="flex items-center gap-2 text-sm">
                   <input type="checkbox" defaultChecked className="w-4 h-4" />
                   <span>Push Notifications</span>
                 </label>
-                <span className="text-sm text-green-400">Enabled</span>
+                <span className="text-sm text-tr-green">Enabled</span>
               </div>
 
-              <div className="flex items-center justify-between pb-3 border-b border-tr-gray-dark">
+              <div className="flex items-center justify-between pb-3 border-b border-tr-border">
                 <label className="flex items-center gap-2 text-sm">
                   <input type="checkbox" defaultChecked className="w-4 h-4" />
                   <span>Email Notifications</span>
                 </label>
-                <span className="text-sm text-green-400">Enabled</span>
+                <span className="text-sm text-tr-green">Enabled</span>
               </div>
 
               <div className="flex items-center justify-between">
@@ -138,7 +138,7 @@ export default function ProfilePage() {
                   <input type="checkbox" defaultChecked className="w-4 h-4" />
                   <span>Real-time Setup Alerts</span>
                 </label>
-                <span className="text-sm text-green-400">Enabled</span>
+                <span className="text-sm text-tr-green">Enabled</span>
               </div>
             </div>
           </div>
@@ -157,7 +157,7 @@ export default function ProfilePage() {
                     {mockUser.tier === 'bronze' ? 'Community preview' : 'Connected'}
                   </p>
                 </div>
-                <span className={`text-sm font-mono uppercase ${mockUser.tier === 'bronze' ? 'text-tr-gray-light' : 'text-green-400'}`}>
+                <span className={`text-sm font-mono uppercase ${mockUser.tier === 'bronze' ? 'text-tr-gray-light' : 'text-tr-green'}`}>
                   {mockUser.tier === 'bronze' ? 'Upgrade' : 'Connected'}
                 </span>
               </div>
@@ -169,7 +169,7 @@ export default function ProfilePage() {
                   <h3 className="font-bold text-sm">Email</h3>
                   <p className="text-sm text-tr-gray-light">Updates and briefings</p>
                 </div>
-                <span className="text-sm font-mono uppercase text-green-400">Connected</span>
+                <span className="text-sm font-mono uppercase text-tr-green">Connected</span>
               </div>
             </div>
           </div>
@@ -179,16 +179,16 @@ export default function ProfilePage() {
         <div className="space-y-3">
           <h2 className="tr-heading tr-heading-3">Account</h2>
 
-          <div className="tr-card bg-tr-black/50 border-tr-gray-dark space-y-3">
+          <div className="tr-card bg-tr-black/50 border-tr-border space-y-3">
             <button className="text-sm font-mono text-tr-white hover:text-tr-red uppercase tracking-wider">
               Change Password →
             </button>
-            <div className="border-t border-tr-gray-dark pt-3">
+            <div className="border-t border-tr-border pt-3">
               <button className="text-sm font-mono text-tr-gray-light hover:text-tr-white uppercase tracking-wider">
                 Privacy Settings →
               </button>
             </div>
-            <div className="border-t border-tr-gray-dark pt-3">
+            <div className="border-t border-tr-border pt-3">
               <button className="text-sm font-mono text-tr-gray-light hover:text-tr-red uppercase tracking-wider">
                 Sign Out →
               </button>
@@ -198,7 +198,7 @@ export default function ProfilePage() {
 
         {/* Support */}
         <div className="tr-card tr-accent-border">
-          <h3 className="font-bold mb-2">Need Help?</h3>
+          <h3 className="font-bold mb-2">Need Help-</h3>
           <p className="text-sm text-tr-gray-light mb-3">
             Contact our support team or access documentation for any questions about your account.
           </p>

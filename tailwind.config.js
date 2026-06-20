@@ -8,17 +8,25 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'tr-black': '#0a0a0a',
-        'tr-red': '#e63946',
-        'tr-dark': '#1a1a1a',
-        'tr-gray-dark': '#2a2a2a',
-        'tr-gray-light': '#666666',
-        'tr-white': '#f5f5f5',
+        'tr-black': '#0A0A0A',
+        'tr-surface': '#141414',
+        'tr-surface-alt': '#1B1B1B',
+        'tr-border': '#262626',
+        'tr-red': '#E8001E',
+        'tr-green': '#16C784',
+        'tr-gold': '#F2B705',
+        'tr-bronze': '#C2783C',
+        'tr-chrome': '#ECECEC',
+        'tr-dark': '#1B1B1B',
+        'tr-gray-dark': '#262626',
+        'tr-gray-light': '#9A9A9A',
+        'tr-gray-tertiary': '#5C5C5C',
+        'tr-white': '#F5F5F5',
       },
       fontFamily: {
         'tr-mono': ['IBM Plex Mono', 'monospace'],
         'tr-sans': ['IBM Plex Sans', 'sans-serif'],
-        'tr-condensed': ['IBM Plex Sans Condensed', 'sans-serif'],
+        'tr-condensed': ['Barlow Condensed', 'sans-serif'],
       },
       fontSize: {
         'tr-xs': ['10px', '12px'],

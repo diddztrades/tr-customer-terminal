@@ -12,7 +12,7 @@ export default function BriefingsPage() {
     <div key={briefing.id} className="tr-card relative">
       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
         <div>
-          <h3 className="text-lg font-bold mb-1">{briefing.title}</h3>
+          <h3 className="tr-heading text-[22px] leading-none">{briefing.title}</h3>
           <div className="text-sm text-tr-gray-light font-mono">
             {new Date(briefing.timestamp).toLocaleString('en-US', {
               month: 'short',
@@ -23,7 +23,7 @@ export default function BriefingsPage() {
             })}
           </div>
         </div>
-        <span className="text-sm font-mono uppercase tracking-wider text-tr-red">{briefing.type}</span>
+        <span className="tr-badge tr-badge-neutral">{briefing.type}</span>
       </div>
 
       <div className="space-y-3">
@@ -33,38 +33,38 @@ export default function BriefingsPage() {
 
         <div className="grid grid-cols-1 gap-3">
           <div>
-            <div className="text-sm font-mono text-tr-gray-light mb-1">Market State</div>
+            <div className="tr-label mb-2">Market State</div>
             <div className="text-sm text-tr-white">{briefing.marketState}</div>
           </div>
           <div>
-            <div className="text-sm font-mono text-tr-gray-light mb-1">Threat</div>
+            <div className="tr-label mb-2">Threat</div>
             <div className="text-sm text-tr-white">{briefing.threatHeadline}</div>
           </div>
         </div>
 
         {'partialAnalysis' in briefing && briefing.partialAnalysis ? (
-          <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Partial Analysis</div>
+          <div className="border-t border-tr-border pt-4">
+            <div className="tr-label mb-2">Partial Analysis</div>
             <p className="text-sm text-tr-gray-light">{briefing.partialAnalysis}</p>
           </div>
         ) : null}
 
         {'tinoNotes' in briefing && briefing.tinoNotes ? (
-          <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Tino's Notes</div>
+          <div className="border-t border-tr-border pt-4">
+            <div className="tr-label mb-2">Tino's Notes</div>
             <p className="text-sm italic text-tr-white">{briefing.tinoNotes}</p>
           </div>
         ) : (
-          <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-sm font-mono uppercase tracking-wider text-tr-red">
+          <div className="border-t border-tr-border pt-4">
+            <div className="tr-lock-callout">
               {briefing.upgradeReason || "Tino's execution notes available in Platinum."}
             </div>
           </div>
         )}
 
         {'eliteCommentary' in briefing && briefing.eliteCommentary ? (
-          <div className="border-t border-tr-gray-dark pt-4">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Elite Commentary</div>
+          <div className="border-t border-tr-border pt-4">
+            <div className="tr-label mb-2">Elite Commentary</div>
             <p className="text-sm text-tr-white">{briefing.eliteCommentary}</p>
           </div>
         ) : null}

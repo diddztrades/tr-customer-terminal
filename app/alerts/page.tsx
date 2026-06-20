@@ -16,10 +16,10 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
   const unreadCount = safeAlerts.filter((alert) => !alert.read).length;
 
   const priorityColor = {
-    LOW: 'bg-blue-400/10 text-blue-400 border-blue-400',
-    MEDIUM: 'bg-yellow-400/10 text-yellow-400 border-yellow-400',
-    HIGH: 'bg-orange-400/10 text-orange-400 border-orange-400',
-    CRITICAL: 'bg-tr-red/10 text-tr-red border-tr-red',
+    LOW: 'tr-badge-info',
+    MEDIUM: 'tr-badge-warning',
+    HIGH: 'tr-badge-warning',
+    CRITICAL: 'tr-badge-danger',
   };
 
   return (
@@ -36,19 +36,19 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
         {/* Alert Stats */}
         <div className="grid grid-cols-1 gap-3">
           <div className="tr-card">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Unread</div>
+            <div className="tr-label mb-2">Unread</div>
             <div className="text-3xl font-bold text-tr-red">{unreadCount}</div>
           </div>
           <div className="tr-card">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Total</div>
+            <div className="tr-label mb-2">Total</div>
             <div className="text-3xl font-bold">{safeAlerts.length}</div>
           </div>
           <div className="tr-card">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Alert Mode</div>
+            <div className="tr-label mb-2">Alert Mode</div>
             <div className="text-sm uppercase">Enabled</div>
           </div>
           <div className="tr-card">
-            <div className="text-sm font-mono text-tr-gray-light mb-2">Tier Access</div>
+            <div className="tr-label mb-2">Tier Access</div>
             <div className="text-sm uppercase text-tr-red">{user.tier}</div>
           </div>
         </div>
@@ -57,20 +57,20 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
         <div className="flex gap-2">
           <a
             href="/alerts"
-            className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+            className={`rounded-lg border px-4 py-2 font-tr-condensed text-sm font-bold uppercase tracking-[0.12em] transition-colors ${
               readFilter === 'unread'
                 ? 'bg-tr-red text-tr-black border-tr-red'
-                : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
+                : 'bg-transparent border-tr-border text-tr-gray-light hover:text-tr-white'
             }`}
           >
             Unread
           </a>
           <a
             href="/alerts?filter=all"
-            className={`text-sm font-mono px-3 py-2 rounded uppercase tracking-wider border transition-colors ${
+            className={`rounded-lg border px-4 py-2 font-tr-condensed text-sm font-bold uppercase tracking-[0.12em] transition-colors ${
               readFilter === 'all'
                 ? 'bg-tr-red text-tr-black border-tr-red'
-                : 'bg-transparent border-tr-gray-dark text-tr-gray-light hover:text-tr-white'
+                : 'bg-transparent border-tr-border text-tr-gray-light hover:text-tr-white'
             }`}
           >
             All
@@ -89,7 +89,7 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
                     <span className="text-sm font-mono text-tr-gray-light">{alert.alertType}</span>
                   </div>
 
-                  <h3 className="font-bold mb-2 text-tr-red">{alert.asset}</h3>
+                  <h3 className="tr-heading mb-2 text-[24px] leading-none text-tr-red">{alert.asset}</h3>
                   <p className="text-sm text-tr-white mb-2">
                     {'fullMessage' in alert && alert.fullMessage ? alert.fullMessage : alert.headline}
                   </p>
@@ -101,7 +101,7 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
                   {'executionDetails' in alert && alert.executionDetails ? (
                     <p className="text-sm text-tr-gray-light mb-2">{alert.executionDetails}</p>
                   ) : (
-                    <div className="text-sm font-mono uppercase tracking-wider text-tr-red mb-2">
+                    <div className="tr-lock-callout mb-2">
                       {alert.upgradeReason || 'Real-time alert context available in Platinum.'}
                     </div>
                   )}
@@ -131,7 +131,7 @@ export default function AlertsPage({ searchParams }: AlertsPageProps) {
         </div>
 
         {/* Alert Preferences */}
-        <div className="tr-card bg-tr-black/50 border-tr-gray-dark">
+        <div className="tr-card bg-tr-black/50 border-tr-border">
           <h3 className="font-bold mb-3 text-sm">Alert Preferences</h3>
           <div className="space-y-2 text-sm">
             <div className="flex items-center justify-between">
